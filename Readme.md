@@ -1,9 +1,3 @@
-<html>
-<head>
-    <meta charset="UTF-8" />
-</head>
-<body>
-    <h1> Exercícios de Typescript</h1>
-</body>
+# Exercícios de Typescript
 
-</html>
+![Trabalhando em um notebook](https://miro.medium.com/max/1400/1*5LC_nHn0M7Cgq9Vu8rA6oA.jpeg)
