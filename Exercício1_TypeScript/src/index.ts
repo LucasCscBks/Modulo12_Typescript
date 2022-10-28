@@ -1,20 +1,62 @@
 class Validator {
-    data: number | string | boolean | void | null | undefined;
-    constructor (data: number | string | boolean | void | null | undefined) {
-        this.data = data
+    _data: number | string | boolean | void | null | undefined;
+    constructor (data: any) {
+        this._data = data
     }
+}
 
-    dataSum(value: number) {
-        if (typeof(this.data) === "number") {
-            return `A soma foi: ${this.data + value}` 
-        } else {
-            return this.data + ' Não foi possível somar!'
+class StringValidator extends Validator {
+    constructor (data: any) {
+        try {
+            super(data)
+            if (typeof(data) === 'string') {
+                console.log(`${data} : É uma string!`)
+            } else {
+                throw new Error(`O tipo está errado`)
+            }
+        }
+        catch (err) {
+            console.log(err)
         }
     }
 }
 
-let validate1 = new Validator(100)
-console.log(validate1.dataSum(55))
+class NumberValidator extends Validator {
+    constructor (data: any) {
+        try {
+            super(data)
+            if (typeof(data) === 'number') {
+                console.log(`${data} : É um número!`)
+            } else {
+                throw new Error(`O tipo está errado`)
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+}
 
-let validate2 = new Validator('Concurso')
-console.log(validate2.dataSum(33))
+class BooleanValidator extends Validator {
+    constructor (data: any) {
+        try {
+            super(data)
+            if (typeof(data) === 'boolean') {
+                console.log(`${data} : É booleano`)
+            } else {
+                throw new Error(`O tipo está errado`)
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+let stringError = new StringValidator(22);
+let numberError = new NumberValidator(true);
+let booleanError = new BooleanValidator('teste');
+
+let string = new StringValidator('Teste correto');
+let number = new NumberValidator(77);
+let boolean = new BooleanValidator(true);
