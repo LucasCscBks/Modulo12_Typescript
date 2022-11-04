@@ -1,0 +1,14 @@
+#section {
+    width: 80vw;
+    height: 20vh;
+    background-color: rgba(255,0,0,0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label {
+    margin-right: 2vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
