@@ -63,20 +63,39 @@ class BooleanValidator extends Validator {
 
 class RegexValidator extends StringValidator {
     constructor (data: any) {
-        try {
-            super(data)
-            let re = /^(\w{1,}@\w{1,}\.(\w{3})(\.\w{2}){0,1})$/gim
-            let ok = re.exec(data)
-            if (ok === null) {
-                throw new Error(`O formato está errado`)
-            } else {
-                console.log(`${data} : está no formado correto.`)
-            }
-        } catch (err) {
-            console.log(err)
-        }
+        super(data)
+    }
+
+    get regex() {
+        return new RegExp('')
     }
 }
+
+class EmailValidator extends RegexValidator {
+    constructor (data: any) {
+        super(data)
+    }
+
+    get regex(): RegExp {
+        return new RegExp('/^(\w{1,}@\w{1,}\.(\w{3})(\.\w{2}){0,1})$/gim')
+    }
+}
+
+let a = new EmailValidator('')
+console.log('AQUI',a.regex)
+
+class PasswordValidator extends RegexValidator {
+    constructor (data: any) {
+        super(data)
+    }
+}
+
+class NameValidator extends RegexValidator {
+    constructor (data: any) {
+        super(data)
+    }
+}
+
 
 class EmailInput extends HTMLElement {
 
