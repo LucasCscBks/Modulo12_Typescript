@@ -74,16 +74,20 @@ class EmailValidator extends RegexValidator {
         return new RegExp('/^(\w{1,}@\w{1,}\.(\w{3})(\.\w{2}){0,1})$/gim');
     }
 }
-let a = new EmailValidator('');
-console.log('AQUI', a.regex);
 class PasswordValidator extends RegexValidator {
     constructor(data) {
         super(data);
+    }
+    get regex() {
+        return new RegExp('/^\w{1,}$/gim');
     }
 }
 class NameValidator extends RegexValidator {
     constructor(data) {
         super(data);
+    }
+    get regex() {
+        return new RegExp('/^([a-z]{1,})([ ]{1}[a-z]{1,}){0,}$/gim');
     }
 }
 class EmailInput extends HTMLElement {
@@ -99,7 +103,46 @@ class EmailInput extends HTMLElement {
     }
     onChangedEmail(e) {
         console.log(this.emailInput.value);
-        let test = new RegexValidator(this.emailInput.value);
+        let validator = new EmailValidator('');
+        let tnc = validator.regex;
+        console.log(tnc.test('lucas@gmail.com.br'));
+        let vsf = new RegExp('/^(\w{1,}@\w{1,}\.(\w{3})(\.\w{2}){0,1})$/gim');
+        let result = vsf.test('lucas@gmail.com');
+        console.log('Resultado: ', result);
+    }
+}
+class PasswordInput extends HTMLElement {
+    constructor() {
+        super();
+        console.log('classe instanciada');
+        const shadow = this.attachShadow({ mode: "closed" });
+        this.passwordInput = document.createElement('input');
+        this.passwordInput.type = 'email';
+        this.passwordInput.style.border = 'none';
+        this.passwordInput.onchange = (e) => this.onChangedEmail(e);
+        shadow.appendChild(this.passwordInput);
+    }
+    onChangedEmail(e) {
+        console.log(this.passwordInput.value);
+        let test = new RegexValidator(this.passwordInput.value);
+    }
+}
+class NameInput extends HTMLElement {
+    constructor() {
+        super();
+        console.log('classe instanciada');
+        const shadow = this.attachShadow({ mode: "closed" });
+        this.nameInput = document.createElement('input');
+        this.nameInput.type = 'email';
+        this.nameInput.style.border = 'none';
+        this.nameInput.onchange = (e) => this.onChangedEmail(e);
+        shadow.appendChild(this.nameInput);
+    }
+    onChangedEmail(e) {
+        console.log(this.nameInput.value);
+        let test = new RegexValidator(this.nameInput.value);
     }
 }
 customElements.define("email-input", EmailInput);
+customElements.define("password-input", PasswordInput);
+customElements.define("name-input", NameInput);
